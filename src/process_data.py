@@ -1,3 +1,4 @@
+import sys
 import os
 import logging
 import glob
@@ -6,16 +7,23 @@ import argparse
 import yaml
 from datetime import datetime
 from typing import Dict, Any
+
 from pyspark.sql import functions as F, DataFrame
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+
 from src.utils import get_spark_session
 
-# Ensure Spark workers use the correct Python interpreter.
-venv_python = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "venv", "Scripts", "python.exe"))
+# Dynamically set the Spark worker/driver Python to use the same interpreter
+# that's running this script (works in local & container).
+venv_python = sys.executable
 os.environ["PYSPARK_PYTHON"] = venv_python
 os.environ["PYSPARK_DRIVER_PYTHON"] = venv_python
 
+
 def setup_logger(log_filename: str) -> logging.Logger:
+    """
+    Sets up a logger that writes to a specified log file in the ../logs directory.
+    """
     log_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs"))
     os.makedirs(log_dir, exist_ok=True)
     log_file = os.path.join(log_dir, log_filename)
@@ -27,9 +35,15 @@ def setup_logger(log_filename: str) -> logging.Logger:
     logger.addHandler(handler)
     return logger
 
+
 logger = setup_logger("Data_processed.txt")
 
+
 def process_data(config: Dict[str, Any], dataset: str, output_dir: str) -> None:
+    """
+    Reads a JSONL input, cleans and tokenizes the 'description' field, then counts
+    the occurrences of specific target words, storing the result in a single Parquet file.
+    """
     logger.info("Starting process_data")
     spark = get_spark_session("ProcessData")
     spark.sparkContext.setLogLevel("ERROR")
@@ -38,24 +52,28 @@ def process_data(config: Dict[str, Any], dataset: str, output_dir: str) -> None:
     logger.info(f"Reading dataset from {input_path}")
     df: DataFrame = spark.read.json(input_path)
     
+    # Clean 'description': lowercase, remove punctuation, split into words
     cleaned_df = df.select(F.regexp_replace(F.lower(F.col("description")), r'[^\w\s]', '').alias("cleaned"))
     words_df = cleaned_df.select(F.explode(F.split(F.col("cleaned"), "\\s+")).alias("word")).filter(F.col("word") != "")
     
+    # Define target words and count them
     target_words = ["president", "the", "asia"]
     grouped_df = words_df.groupBy("word").agg(F.count("*").alias("count"))
     
-    # Rename the computed count as target_count.
-    target_counts_df = grouped_df.filter(F.col("word").isin(target_words))\
+    # Filter out the row counts for just the target words
+    target_counts_df = grouped_df.filter(F.col("word").isin(target_words)) \
                                  .select("word", F.col("count").alias("target_count"))
     
-    # Create a default DataFrame for target words with count 0 and rename the count column.
-    schema = StructType([StructField("word", StringType(), False), StructField("count", IntegerType(), True)])
-    default_df = spark.createDataFrame([(w, 0) for w in target_words], schema=schema)\
+    # Create a DataFrame of target words with count=0, then left-join to fill missing counts
+    schema = StructType([
+        StructField("word", StringType(), False),
+        StructField("count", IntegerType(), True)
+    ])
+    default_df = spark.createDataFrame([(w, 0) for w in target_words], schema=schema) \
                       .withColumnRenamed("count", "default_count")
     
-    # Left join and resolve ambiguity using renamed columns.
-    final_df: DataFrame = default_df.join(target_counts_df, on="word", how="left")\
-        .select("word", F.coalesce(F.col("target_count"), F.col("default_count")).alias("count"))\
+    final_df: DataFrame = default_df.join(target_counts_df, on="word", how="left") \
+        .select("word", F.coalesce(F.col("target_count"), F.col("default_count")).alias("count")) \
         .coalesce(1)
     
     current_date = datetime.now().strftime("%Y%m%d")
@@ -65,24 +83,29 @@ def process_data(config: Dict[str, Any], dataset: str, output_dir: str) -> None:
     logger.info(f"Writing temporary Parquet output to {temp_output}")
     final_df.write.mode("overwrite").parquet(temp_output)
     
+    # Move the single part file to the final Parquet file name
     part_files = glob.glob(os.path.join(temp_output, "part-*"))
     if not part_files:
         logger.error("No part file found in temporary output directory.")
         spark.stop()
         return
+    
     logger.info(f"Found part file: {part_files[0]}")
     logger.info(f"Moving file to final output: {final_file}")
     shutil.move(part_files[0], final_file)
     shutil.rmtree(temp_output)
     logger.info(f"Removed temporary directory: {temp_output}")
     
+    # (Optional) Read back the final file to confirm
     logger.info(f"Reading back final Parquet file from {final_file}")
     spark.read.parquet(final_file).show(truncate=False)
     logger.info("process_data completed successfully")
     
+    # Flush logs and stop Spark
     for h in logger.handlers:
         h.flush()
     spark.stop()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process dataset to count target words and output as Parquet.")

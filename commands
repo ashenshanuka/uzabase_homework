@@ -1,9 +1,14 @@
 ./script/run.sh    
 pytest                  
 docker build -f Dockerfile.Dockerfile -t uzabase_app:latest . 2>&1 | tee logs/Docker_build.txt  
+run
+docker run --rm uzabase_app:latest
 
 
 python src/run.py process_data -cfg config/cfg.yaml -dataset news -dirout “ztmp/data/”
 
 python src/run.py process_data_all -cfg config/cfg.yaml -dataset news -dirout “ztmp/data/”
+
+docker remove all
+docker rmi $(docker images -q)
 
