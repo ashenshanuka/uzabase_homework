@@ -1,0 +1,8 @@
+2025-03-07 19:00:17,245 INFO Starting process_data_all
+2025-03-07 19:00:22,761 INFO Reading dataset from dataset/test.jsonl
+2025-03-07 19:00:29,388 INFO Writing temporary Parquet output to ztmp/data/temp_word_count_all_20250307
+2025-03-07 19:00:35,170 INFO Found part file: ztmp/data/temp_word_count_all_20250307\part-00000-35fa7c5e-ed1c-4143-aa53-38bc41bb67da-c000.snappy.parquet
+2025-03-07 19:00:35,170 INFO Moving file to final output: ztmp/data/word_count_all_20250307.parquet
+2025-03-07 19:00:35,172 INFO Removed temporary directory: ztmp/data/temp_word_count_all_20250307
+2025-03-07 19:00:35,173 INFO Reading back final Parquet file from ztmp/data/word_count_all_20250307.parquet
+2025-03-07 19:00:36,095 INFO process_data_all completed successfully

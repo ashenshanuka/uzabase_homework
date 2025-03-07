@@ -1,0 +1,9 @@
+./script/run.sh    
+pytest                  
+docker build -f Dockerfile.Dockerfile -t uzabase_app:latest . 2>&1 | tee logs/Docker_build.txt  
+
+
+python src/run.py process_data -cfg config/cfg.yaml -dataset news -dirout “ztmp/data/”
+
+python src/run.py process_data_all -cfg config/cfg.yaml -dataset news -dirout “ztmp/data/”
+
