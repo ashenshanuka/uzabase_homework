@@ -1,33 +1,21 @@
-2025-03-07 22:45:56,781 INFO Starting process_data_all
-2025-03-07 22:46:01,303 INFO Reading dataset from dataset/test.jsonl
-2025-03-07 22:46:06,208 INFO Writing temporary Parquet output to ztmp/data/temp_word_count_all_20250307
-2025-03-07 22:46:10,128 INFO Found part file: ztmp/data/temp_word_count_all_20250307\part-00000-31559e56-6f88-47d8-b19a-8bcc8a318d61-c000.snappy.parquet
-2025-03-07 22:46:10,128 INFO Moving file to final output: ztmp/data/word_count_all_20250307.parquet
-2025-03-07 22:46:10,130 INFO Removed temporary directory: ztmp/data/temp_word_count_all_20250307
-2025-03-07 22:46:10,130 INFO Reading back final Parquet file from ztmp/data/word_count_all_20250307.parquet
-2025-03-07 22:46:10,732 INFO process_data_all completed successfully
-2025-03-07 17:35:40,969 INFO Starting process_data_all
-2025-03-08 00:43:40,778 INFO Starting process_data_all
-2025-03-08 00:43:46,375 INFO Reading dataset from dataset/test.jsonl
-2025-03-08 00:43:53,193 INFO Writing temporary Parquet output to ztmp/data/temp_word_count_all_20250308
-2025-03-08 00:43:58,400 INFO Found part file: ztmp/data/temp_word_count_all_20250308\part-00000-9db5e83d-e734-4ba7-8036-8987eb893b8b-c000.snappy.parquet
-2025-03-08 00:43:58,401 INFO Moving file to final output: ztmp/data/word_count_all_20250308.parquet
-2025-03-08 00:43:58,402 INFO Removed temporary directory: ztmp/data/temp_word_count_all_20250308
-2025-03-08 00:43:58,402 INFO Reading back final Parquet file from ztmp/data/word_count_all_20250308.parquet
-2025-03-08 00:43:59,443 INFO process_data_all completed successfully
-2025-03-08 00:44:49,034 INFO Starting process_data_all
-2025-03-08 00:44:55,128 INFO Reading dataset from dataset/test.jsonl
-2025-03-08 00:45:03,836 INFO Writing temporary Parquet output to ztmp/data/temp_word_count_all_20250308
-2025-03-08 00:45:11,861 INFO Found part file: ztmp/data/temp_word_count_all_20250308\part-00000-f66cafc5-1429-49ea-a2e5-c0ee134d91bb-c000.snappy.parquet
-2025-03-08 00:45:11,862 INFO Moving file to final output: ztmp/data/word_count_all_20250308.parquet
-2025-03-08 00:45:11,917 INFO Removed temporary directory: ztmp/data/temp_word_count_all_20250308
-2025-03-08 00:45:11,918 INFO Reading back final Parquet file from ztmp/data/word_count_all_20250308.parquet
-2025-03-08 00:45:13,381 INFO process_data_all completed successfully
-2025-03-08 01:00:46,006 INFO Starting process_data_all
-2025-03-08 01:00:52,122 INFO Reading dataset from dataset/test.jsonl
-2025-03-08 01:00:59,380 INFO Writing temporary Parquet output to ztmp/data/temp_word_count_all_20250308
-2025-03-08 01:01:06,109 INFO Found part file: ztmp/data/temp_word_count_all_20250308\part-00000-6f0fa337-88ab-4e04-93b0-f2486a6af7a4-c000.snappy.parquet
-2025-03-08 01:01:06,109 INFO Moving file to final output: ztmp/data/word_count_all_20250308.parquet
-2025-03-08 01:01:06,134 INFO Removed temporary directory: ztmp/data/temp_word_count_all_20250308
-2025-03-08 01:01:06,134 INFO Reading back final Parquet file from ztmp/data/word_count_all_20250308.parquet
-2025-03-08 01:01:07,168 INFO process_data_all completed successfully
+2025-03-08 12:41:40,570 INFO Starting process_data_all: Counting ALL unique words
+2025-03-08 12:41:46,817 INFO Spark session initialized successfully for process_data_all.
+2025-03-08 12:41:46,817 INFO (ALL) Reading data from input path: dataset/test.jsonl
+2025-03-08 12:41:54,231 INFO (ALL) Data read into Spark DataFrame successfully.
+2025-03-08 12:41:56,237 INFO (ALL) DataFrame Schema: struct<description:string,label:bigint,title:string>
+2025-03-08 12:41:56,239 INFO (ALL) Number of records in input DataFrame: 7600
+2025-03-08 12:41:56,240 INFO (ALL) Tokenization the 'description' column into individual words and cleaning punctuation/special chars.
+2025-03-08 12:41:58,232 INFO (ALL) Number of total words (rows) after cleaning: 232197
+2025-03-08 12:41:58,236 INFO (ALL) Grouping by word and counting occurrences for all unique words.
+2025-03-08 12:41:58,346 INFO (ALL) Temporary output path: ztmp/data/temp_word_count_all_20250308
+2025-03-08 12:41:58,346 INFO (ALL) Final output path: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 12:41:58,347 INFO (ALL) Saving word counts to temp Parquet directory.
+2025-03-08 12:42:03,717 INFO (ALL) Validating part files in the temporary directory.
+2025-03-08 12:42:03,719 INFO (ALL) Part files found: ['ztmp/data/temp_word_count_all_20250308\\part-00000-dd82ced5-c182-48ba-a269-ae7457aa6d32-c000.snappy.parquet']
+2025-03-08 12:42:03,720 INFO (ALL) Moving and renaming the part file to the final destination.
+2025-03-08 12:42:03,722 INFO (ALL) Removing temporary directory: ztmp/data/temp_word_count_all_20250308
+2025-03-08 12:42:03,725 INFO (ALL) Final Parquet file saved at: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 12:42:03,727 INFO (ALL) Reading the final Parquet file for verification.
+2025-03-08 12:42:04,544 INFO (ALL) Number of unique words in final result: 23482
+2025-03-08 12:42:05,030 INFO process_data_all: Counting ALL unique words completed successfully.
+2025-03-08 12:42:05,533 INFO (ALL) Spark session stopped for process_data_all.

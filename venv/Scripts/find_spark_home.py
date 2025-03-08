@@ -1,4 +1,4 @@
-#!D:\UZABASE\venv\Scripts\python.exe
+#!D:\Code\venv\Scripts\python.exe
 
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more

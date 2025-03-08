@@ -1,24 +1,39 @@
+"""
+This module provides a function to create a Spark session that uses the current Python environment.
+
+It ensures that PySpark uses the same Python executable as the rest of the application.
+"""
+
 import logging
 import os
+import sys
 from pyspark.sql import SparkSession
-from typing import Any
 
 def get_spark_session(app_name: str) -> SparkSession:
     """
-    Create and return a SparkSession with the given application name.
-    This session is configured so that both the driver and worker processes use
-    the specified Python executable from the virtual environment.
-    
+    Creates and returns a SparkSession configured to use the current Python environment.
+
+    This function sets the 'spark.pyspark.python' and 'spark.pyspark.driver.python' Spark
+    configurations to the path of the active Python executable. This makes sure that PySpark
+    uses the same environment as the code that calls it.
+
     Args:
-        app_name (str): The name of the Spark application.
-    
+        app_name (str): Name of the Spark application.
+
     Returns:
-        SparkSession: An active SparkSession.
+        SparkSession: A Spark session with Python executable configuration.
     """
-    python_path: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "venv", "Scripts", "python.exe"))
-    logging.info(f"Initializing Spark session with app name: {app_name}")
-    spark: SparkSession = SparkSession.builder.appName(app_name) \
-        .config("spark.pyspark.python", python_path) \
-        .config("spark.pyspark.driver.python", python_path) \
+    # Retrieves the path of the active Python executable.
+    python_path = sys.executable
+    logging.info(f"Using Python executable for Spark: {python_path}")
+
+    # Builds a new SparkSession using the active Python environment.
+    spark = (
+        SparkSession.builder
+        .appName(app_name)
+        .config("spark.pyspark.python", python_path)
+        .config("spark.pyspark.driver.python", python_path)
         .getOrCreate()
+    )
+
     return spark

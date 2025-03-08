@@ -1,5 +1,7 @@
 ./script/run.sh    
-pytest                  
+pytest                
+pytest -vv --log-level=DEBUG
+
 docker build -f Dockerfile.Dockerfile -t uzabase_app:latest . 2>&1 | tee logs/Docker_build.txt  
 run
 docker run --rm uzabase_app:latest
@@ -12,3 +14,22 @@ python src/run.py process_data_all -cfg config/cfg.yaml -dataset news -dirout â€
 docker remove all
 docker rmi $(docker images -q)
 
+
+
+Option A: Use the PySpark Shell
+In your terminal (PowerShell), start the PySpark shell:
+powershell
+Copy
+Edit
+pyspark
+Once the PySpark console opens (youâ€™ll see a >>> prompt), run your Python code there:
+python
+Copy
+Edit
+df = spark.read.parquet("ztmp/data/word_count_20250308.parquet")
+df.show()   # This will now work in the PySpark console
+
+df = spark.read.parquet("ztmp/data/word_count_all_20250308.parquet")
+df.show(total_rows, truncate=False)
+
+df.show()
