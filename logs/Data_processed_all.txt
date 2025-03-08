@@ -19,3 +19,66 @@
 2025-03-08 12:42:04,544 INFO (ALL) Number of unique words in final result: 23482
 2025-03-08 12:42:05,030 INFO process_data_all: Counting ALL unique words completed successfully.
 2025-03-08 12:42:05,533 INFO (ALL) Spark session stopped for process_data_all.
+2025-03-08 10:00:33,167 INFO Starting process_data_all: Counting ALL unique words
+2025-03-08 10:00:36,835 INFO Spark session initialized successfully for process_data_all.
+2025-03-08 10:00:36,836 INFO (ALL) Reading data from input path: dataset/test.jsonl
+2025-03-08 10:00:41,188 INFO (ALL) Data read into Spark DataFrame successfully.
+2025-03-08 10:00:42,317 INFO (ALL) DataFrame Schema: struct<description:string,label:bigint,title:string>
+2025-03-08 10:00:42,318 INFO (ALL) Number of records in input DataFrame: 7600
+2025-03-08 10:00:42,319 INFO (ALL) Tokenization the 'description' column into individual words and cleaning punctuation/special chars.
+2025-03-08 10:00:43,361 INFO (ALL) Number of total words (rows) after cleaning: 232197
+2025-03-08 10:00:43,362 INFO (ALL) Grouping by word and counting occurrences for all unique words.
+2025-03-08 10:00:43,412 INFO (ALL) Temporary output path: ztmp/data/temp_word_count_all_20250308
+2025-03-08 10:00:43,413 INFO (ALL) Final output path: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 10:00:43,413 INFO (ALL) Saving word counts to temp Parquet directory.
+2025-03-08 10:00:45,786 INFO (ALL) Validating part files in the temporary directory.
+2025-03-08 10:00:45,787 INFO (ALL) Part files found: ['ztmp/data/temp_word_count_all_20250308/part-00000-306ec081-2575-48bb-99d5-7a401e61c9eb-c000.snappy.parquet']
+2025-03-08 10:00:45,788 INFO (ALL) Moving and renaming the part file to the final destination.
+2025-03-08 10:00:45,790 INFO (ALL) Removing temporary directory: ztmp/data/temp_word_count_all_20250308
+2025-03-08 10:00:45,792 INFO (ALL) Final Parquet file saved at: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 10:00:45,793 INFO (ALL) Reading the final Parquet file for verification.
+2025-03-08 10:00:46,303 INFO (ALL) Number of unique words in final result: 23482
+2025-03-08 10:00:46,627 INFO process_data_all: Counting ALL unique words completed successfully.
+2025-03-08 10:00:47,209 INFO (ALL) Spark session stopped for process_data_all.
+2025-03-08 15:33:27,740 INFO Starting process_data_all: Counting ALL unique words
+2025-03-08 15:33:32,807 INFO Spark session initialized successfully for process_data_all.
+2025-03-08 15:33:32,808 INFO (ALL) Reading data from input path: dataset/test.jsonl
+2025-03-08 15:33:37,861 INFO (ALL) Data read into Spark DataFrame successfully.
+2025-03-08 15:33:39,019 INFO (ALL) DataFrame Schema: struct<description:string,label:bigint,title:string>
+2025-03-08 15:33:39,021 INFO (ALL) Number of records in input DataFrame: 7600
+2025-03-08 15:33:39,021 INFO (ALL) Tokenization the 'description' column into individual words and cleaning punctuation/special chars.
+2025-03-08 15:33:40,009 INFO (ALL) Number of total words (rows) after cleaning: 232197
+2025-03-08 15:33:40,009 INFO (ALL) Grouping by word and counting occurrences for all unique words.
+2025-03-08 15:33:40,048 INFO (ALL) Temporary output path: ztmp/data/temp_word_count_all_20250308
+2025-03-08 15:33:40,048 INFO (ALL) Final output path: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 15:33:40,049 INFO (ALL) Saving word counts to temp Parquet directory.
+2025-03-08 15:33:42,978 INFO (ALL) Validating part files in the temporary directory.
+2025-03-08 15:33:42,978 INFO (ALL) Part files found: ['ztmp/data/temp_word_count_all_20250308\\part-00000-9c7bc76b-9fa8-4976-8766-e0b510c48a45-c000.snappy.parquet']
+2025-03-08 15:33:42,978 INFO (ALL) Moving and renaming the part file to the final destination.
+2025-03-08 15:33:43,009 INFO (ALL) Removing temporary directory: ztmp/data/temp_word_count_all_20250308
+2025-03-08 15:33:43,011 INFO (ALL) Final Parquet file saved at: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 15:33:43,012 INFO (ALL) Reading the final Parquet file for verification.
+2025-03-08 15:33:43,546 INFO (ALL) Number of unique words in final result: 23482
+2025-03-08 15:33:43,832 INFO process_data_all: Counting ALL unique words completed successfully.
+2025-03-08 15:33:44,321 INFO (ALL) Spark session stopped for process_data_all.
+2025-03-08 10:08:40,583 INFO Starting process_data_all: Counting ALL unique words
+2025-03-08 10:08:44,479 INFO Spark session initialized successfully for process_data_all.
+2025-03-08 10:08:44,480 INFO (ALL) Reading data from input path: dataset/test.jsonl
+2025-03-08 10:08:50,633 INFO (ALL) Data read into Spark DataFrame successfully.
+2025-03-08 10:08:51,693 INFO (ALL) DataFrame Schema: struct<description:string,label:bigint,title:string>
+2025-03-08 10:08:51,694 INFO (ALL) Number of records in input DataFrame: 7600
+2025-03-08 10:08:51,695 INFO (ALL) Tokenization the 'description' column into individual words and cleaning punctuation/special chars.
+2025-03-08 10:08:52,809 INFO (ALL) Number of total words (rows) after cleaning: 232197
+2025-03-08 10:08:52,810 INFO (ALL) Grouping by word and counting occurrences for all unique words.
+2025-03-08 10:08:52,877 INFO (ALL) Temporary output path: ztmp/data/temp_word_count_all_20250308
+2025-03-08 10:08:52,878 INFO (ALL) Final output path: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 10:08:52,878 INFO (ALL) Saving word counts to temp Parquet directory.
+2025-03-08 10:08:55,517 INFO (ALL) Validating part files in the temporary directory.
+2025-03-08 10:08:55,519 INFO (ALL) Part files found: ['ztmp/data/temp_word_count_all_20250308/part-00000-4dbd2967-48c2-4884-987f-02026d0b375e-c000.snappy.parquet']
+2025-03-08 10:08:55,520 INFO (ALL) Moving and renaming the part file to the final destination.
+2025-03-08 10:08:55,522 INFO (ALL) Removing temporary directory: ztmp/data/temp_word_count_all_20250308
+2025-03-08 10:08:55,523 INFO (ALL) Final Parquet file saved at: ztmp/data/word_count_all_20250308.parquet
+2025-03-08 10:08:55,525 INFO (ALL) Reading the final Parquet file for verification.
+2025-03-08 10:08:56,083 INFO (ALL) Number of unique words in final result: 23482
+2025-03-08 10:08:56,457 INFO process_data_all: Counting ALL unique words completed successfully.
+2025-03-08 10:08:56,836 INFO (ALL) Spark session stopped for process_data_all.

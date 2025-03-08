@@ -15,33 +15,28 @@ from src.process_data_all import process_data_all
 
 def parse_args(args: List[str]) -> Dict[str, str]:
     """
-    Parses a list of command-line arguments into a dictionary.
+    Converts a list of command-line arguments into a dictionary. 
+    Each argument pair is expected in the format: -key value. 
+    For example, [-cfg, config.yaml, -dataset, my_dataset] becomes 
+    {'cfg': 'config.yaml', 'dataset': 'my_dataset'}.
 
-    Each argument is expected to have a '-' prefix, and arguments are expected
-    to be in pairs (for example, -cfg config.yaml). A ValueError is raised if
-    the number of arguments is not even.
-
-    Example:
-        args = ['-cfg', 'config.yaml', '-dataset', 'my_dataset']
-        Returns {'cfg': 'config.yaml', 'dataset': 'my_dataset'}.
-
-    Args:
-        args (List[str]): List of command-line arguments (excluding the script name).
-
-    Returns:
-        Dict[str, str]: Dictionary that maps argument names to their values.
-
-    Raises:
-        ValueError: If the list of arguments has an odd length.
+    Raises a ValueError if the number of arguments is not even.
     """
     if len(args) % 2 != 0:
-        raise ValueError("Invalid number of arguments. Arguments must be provided in pairs.")
+        raise ValueError("Invalid number of arguments. Arguments must be provided pairs of '-key value'")
     return {args[i].strip('-'): args[i+1] for i in range(0, len(args), 2)}
 
 def main() -> None:
     """
-    Sets up logging, validates arguments, reads the configuration file, and
-    invokes either 'process_data' or 'process_data_all' based on the provided command.
+    
+     Orchestrates the data processing workflow by:
+      1. Configuring logging.
+      2. Checking that sufficient command-line arguments are provided. - validates arguments
+      3. Extracting a command (process_data or process_data_all).
+      4. Parsing the remaining arguments for configuration, dataset, and output folder.
+      5. Loading the specified YAML configuration.
+      6. Invoking the chosen function with the parsed arguments.
+      
 
     Example usage:
         python src/run.py process_data -cfg config.yaml -dataset my_dataset -dirout output/
@@ -58,6 +53,7 @@ def main() -> None:
 
     # A minimum of one command plus three required parameters (each with a corresponding value) is needed.
     # That is 1 (command) + 6 (three pairs) = 7 total arguments including the script name.
+    # command, -cfg <file>, -dataset <name>, -dirout <folder>.
     if len(sys.argv) < 5:
         print("Usage: python src/run.py <command> -cfg <config_file> -dataset <dataset> -dirout <output_dir>")
         sys.exit(1)

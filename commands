@@ -3,19 +3,24 @@ pytest
 pytest -vv --log-level=DEBUG
 
 docker build -f Dockerfile.Dockerfile -t uzabase_app:latest . 2>&1 | tee logs/Docker_build.txt  
-run
+#run
 docker run --rm uzabase_app:latest
+
+#run and Pip file generation 
+docker run -it --rm `
+    -v "${PWD}\logs:/app/logs" `
+    uzabase_app:latest
 
 
 python src/run.py process_data -cfg config/cfg.yaml -dataset news -dirout “ztmp/data/”
 
 python src/run.py process_data_all -cfg config/cfg.yaml -dataset news -dirout “ztmp/data/”
 
-docker remove all
+#docker remove all
 docker rmi $(docker images -q)
 
 
-
+#view parquet file
 Option A: Use the PySpark Shell
 In your terminal (PowerShell), start the PySpark shell:
 powershell

@@ -15,5 +15,10 @@ python src/run.py process_data_all -cfg config/cfg.yaml -dataset news -dirout 'z
 echo "Pipeline execution completed."
 
 
+#pip list log- pip list inside the docker
+echo "Generating pip_list.txt at runtime..."
+pip list > logs/pip_list.txt
+
+
 echo "Press any key to close the terminal..."
 read -n 1 -s

@@ -20,3 +20,69 @@
 2025-03-08 12:41:37,256 INFO Number of distinct words in final result: 3
 2025-03-08 12:41:37,610 INFO process_data: Counting target words completed successfully.
 2025-03-08 12:41:37,960 INFO Spark session stopped for process_data.
+2025-03-08 10:00:17,551 INFO Starting process_data: Counting specified target words
+2025-03-08 10:00:21,004 INFO Spark session initialized successfully for process_data.
+2025-03-08 10:00:21,005 INFO Reading data from input path: dataset/test.jsonl
+2025-03-08 10:00:25,777 INFO Data read into Spark DataFrame successfully for process_data.
+2025-03-08 10:00:26,748 INFO DataFrame Schema: struct<description:string,label:bigint,title:string>
+2025-03-08 10:00:26,749 INFO Number of records in input DataFrame: 7600
+2025-03-08 10:00:26,750 INFO Target words: ['president', 'the', 'asia']
+2025-03-08 10:00:26,752 INFO Tokenization the 'description' column into individual words and filtering on target words.
+2025-03-08 10:00:27,813 INFO Number of rows after applying target word filter: 12811
+2025-03-08 10:00:27,814 INFO Grouping by targeted word and counting occurrences
+2025-03-08 10:00:27,869 INFO Temporary output path: ztmp/data/temp_word_count_20250308
+2025-03-08 10:00:27,870 INFO Final output path: ztmp/data/word_count_20250308.parquet
+2025-03-08 10:00:27,870 INFO Saving word counts to temp Parquet directory.
+2025-03-08 10:00:29,601 INFO Looking for part-* files in the temporary directory.
+2025-03-08 10:00:29,602 INFO Part files found: ['ztmp/data/temp_word_count_20250308/part-00000-5fe30bf0-9cee-4fa2-accd-00aad260bb7d-c000.snappy.parquet']
+2025-03-08 10:00:29,602 INFO Moving and renaming the part file to final destination.
+2025-03-08 10:00:29,603 INFO Removing temporary directory: ztmp/data/temp_word_count_20250308
+2025-03-08 10:00:29,604 INFO Final Parquet file saved at: ztmp/data/word_count_20250308.parquet
+2025-03-08 10:00:29,606 INFO Reading the final Parquet file for verification.
+2025-03-08 10:00:30,092 INFO Number of distinct words in final result: 3
+2025-03-08 10:00:30,354 INFO process_data: Counting target words completed successfully.
+2025-03-08 10:00:30,872 INFO Spark session stopped for process_data.
+2025-03-08 15:32:54,003 INFO Starting process_data: Counting specified target words
+2025-03-08 15:33:14,789 INFO Spark session initialized successfully for process_data.
+2025-03-08 15:33:14,789 INFO Reading data from input path: dataset/test.jsonl
+2025-03-08 15:33:20,105 INFO Data read into Spark DataFrame successfully for process_data.
+2025-03-08 15:33:21,146 INFO DataFrame Schema: struct<description:string,label:bigint,title:string>
+2025-03-08 15:33:21,146 INFO Number of records in input DataFrame: 7600
+2025-03-08 15:33:21,146 INFO Target words: ['president', 'the', 'asia']
+2025-03-08 15:33:21,146 INFO Tokenization the 'description' column into individual words and filtering on target words.
+2025-03-08 15:33:22,122 INFO Number of rows after applying target word filter: 12811
+2025-03-08 15:33:22,124 INFO Grouping by targeted word and counting occurrences
+2025-03-08 15:33:22,164 INFO Temporary output path: ztmp/data/temp_word_count_20250308
+2025-03-08 15:33:22,168 INFO Final output path: ztmp/data/word_count_20250308.parquet
+2025-03-08 15:33:22,168 INFO Saving word counts to temp Parquet directory.
+2025-03-08 15:33:24,270 INFO Looking for part-* files in the temporary directory.
+2025-03-08 15:33:24,270 INFO Part files found: ['ztmp/data/temp_word_count_20250308\\part-00000-33d0a5ba-781e-46d6-a4f8-d39f43ea4554-c000.snappy.parquet']
+2025-03-08 15:33:24,270 INFO Moving and renaming the part file to final destination.
+2025-03-08 15:33:24,283 INFO Removing temporary directory: ztmp/data/temp_word_count_20250308
+2025-03-08 15:33:24,283 INFO Final Parquet file saved at: ztmp/data/word_count_20250308.parquet
+2025-03-08 15:33:24,283 INFO Reading the final Parquet file for verification.
+2025-03-08 15:33:24,736 INFO Number of distinct words in final result: 3
+2025-03-08 15:33:25,009 INFO process_data: Counting target words completed successfully.
+2025-03-08 15:33:25,231 INFO Spark session stopped for process_data.
+2025-03-08 10:08:24,834 INFO Starting process_data: Counting specified target words
+2025-03-08 10:08:28,337 INFO Spark session initialized successfully for process_data.
+2025-03-08 10:08:28,337 INFO Reading data from input path: dataset/test.jsonl
+2025-03-08 10:08:32,942 INFO Data read into Spark DataFrame successfully for process_data.
+2025-03-08 10:08:33,980 INFO DataFrame Schema: struct<description:string,label:bigint,title:string>
+2025-03-08 10:08:33,980 INFO Number of records in input DataFrame: 7600
+2025-03-08 10:08:33,981 INFO Target words: ['president', 'the', 'asia']
+2025-03-08 10:08:33,982 INFO Tokenization the 'description' column into individual words and filtering on target words.
+2025-03-08 10:08:35,147 INFO Number of rows after applying target word filter: 12811
+2025-03-08 10:08:35,148 INFO Grouping by targeted word and counting occurrences
+2025-03-08 10:08:35,210 INFO Temporary output path: ztmp/data/temp_word_count_20250308
+2025-03-08 10:08:35,210 INFO Final output path: ztmp/data/word_count_20250308.parquet
+2025-03-08 10:08:35,211 INFO Saving word counts to temp Parquet directory.
+2025-03-08 10:08:37,118 INFO Looking for part-* files in the temporary directory.
+2025-03-08 10:08:37,120 INFO Part files found: ['ztmp/data/temp_word_count_20250308/part-00000-7b56b581-b5d1-43c6-a16a-da6c4b9fa48f-c000.snappy.parquet']
+2025-03-08 10:08:37,120 INFO Moving and renaming the part file to final destination.
+2025-03-08 10:08:37,122 INFO Removing temporary directory: ztmp/data/temp_word_count_20250308
+2025-03-08 10:08:37,123 INFO Final Parquet file saved at: ztmp/data/word_count_20250308.parquet
+2025-03-08 10:08:37,124 INFO Reading the final Parquet file for verification.
+2025-03-08 10:08:37,696 INFO Number of distinct words in final result: 3
+2025-03-08 10:08:38,062 INFO process_data: Counting target words completed successfully.
+2025-03-08 10:08:38,213 INFO Spark session stopped for process_data.
