@@ -49,7 +49,7 @@ docker build -f Dockerfile.Dockerfile -t uzabase_app:latest .
 docker run --rm -v "$(pwd)":/app uzabase_app:latest
   </pre> 
   <p><strong>GitHub Actions:</strong> A GitHub Actions workflow is configured to build the Docker image on pushes and pull requests to the <code>main</code> branch. The workflow automatically builds and tags the Docker image using the specified Dockerfile.</p>
-  <p><strong>Project Structure:</strong></p>
+
   <pre>
 
 </html>
